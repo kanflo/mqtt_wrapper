@@ -51,6 +51,7 @@ class bridge:
         self.timeout = 0
 
     def on_disconnect(self, client, userdata, rc):
+        logging.error("Disconnected")
         if rc != 0:
             if not self.disconnect_flag:
                 logging.error("Unexpected disconnect, reconnecting.")
