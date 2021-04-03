@@ -22,6 +22,8 @@ class bridge:
         self.client = mqtt.Client(self.client_id, clean_session=True)
         self.client.username_pw_set(self.user_id, self.password)
 
+        self.client.on_log = self.on_log
+        self.client.on_socket_close = self.on_socket_close
         self.client.on_connect = self.on_connect
         self.client.on_disconnect = self.on_disconnect
         self.client.on_message = self.on_message
@@ -29,6 +31,12 @@ class bridge:
         self.client.on_subscribe = self.on_subscribe
 
         self.connect()
+
+    def on_log(client, userdata, level, buf):
+        logging.info("log: %s" % buf)
+
+    def on_socket_close():
+        logging.error("Socket closed")
 
     def connect(self):
         while self.rc != 0:
