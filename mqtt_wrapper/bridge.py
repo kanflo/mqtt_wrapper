@@ -35,7 +35,7 @@ class bridge:
     def on_log(client, userdata, level, buf):
         logging.info("log: %s" % buf)
 
-    def on_socket_close():
+    def on_socket_close(client, userdata, sock):
         logging.error("Socket closed")
 
     def connect(self):
