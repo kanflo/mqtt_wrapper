@@ -37,6 +37,8 @@ class bridge:
 
     def on_socket_close(userdata, sock):
         logging.error("Socket closed")
+        self.rc = 1
+        self.connect()
 
     def connect(self):
         while self.rc != 0:
